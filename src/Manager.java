@@ -21,7 +21,7 @@ public class Manager {
     }
 
     //    Получение списка всех эпиков.
-    public ArrayList<Task> findAllEpics() {
+    public ArrayList<Epic> findAllEpics() {
         return epicManager.findAll();
     }
 
@@ -56,22 +56,22 @@ public class Manager {
     }
 
     // Добавление Эпика.
-    public Task createEpic(Epic epic) {
+    public Epic createEpic(Epic epic) {
         return epicManager.create(epic);
     }
 
     // Обновление задачи.
-    public Task updateTask(Task task) {
+    public Task updateTaskByID(Task task) {
         return taskManager.update(task);
     }
 
     // Обновление подзадачи.
-    public SubTask updateSubTask(SubTask subTask) {
+    public SubTask updateSubTaskByID(SubTask subTask) {
         return subTaskManager.update(subTask);
     }
 
     // Обновление эпика.
-    public Task updateEpic(Epic epic) {
+    public Task updateEpicByID(Epic epic) {
         return epicManager.update(epic);
     }
 

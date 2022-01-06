@@ -12,7 +12,7 @@ public class TaskManager {
 
     // Получение списка всех задач
     public ArrayList<Task> findAll() {
-        return (ArrayList<Task>) tasks.values();
+        return new ArrayList<>(tasks.values());
     }
 
     // Получение задачи по ID

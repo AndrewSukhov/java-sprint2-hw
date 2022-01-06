@@ -75,9 +75,9 @@ public class SubTaskManager {
         ArrayList<SubTask> subTasksOfEpic = new ArrayList<>();
         int counterNew = 1;
         int counterDone = 1;
-        for (SubTask subTask : subTasks.values()) {
-            if (task.getEpicID().equals(subTask.getEpicID())) {
-                subTasksOfEpic.add(subTask);
+        for (int i = 0; i < subTasks.size(); i++) {
+            if (task.getEpicID().equals(subTasks.get(i).getEpicID())) {
+                subTasksOfEpic.add(subTasks.get(i));
             }
         }
         for (SubTask subTask : subTasksOfEpic) {

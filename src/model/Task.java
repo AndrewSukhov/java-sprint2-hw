@@ -6,10 +6,10 @@ import static model.Status.NEW;
 
 // Класс Task описывает сущность задачи типа "задача"
 public class Task {
-    private String name;
-    private String description;
-    private Integer id;
-    private String status;
+    protected String name;
+    protected String description;
+    protected Integer id;
+    protected String status;
 
     public Task() {
         this("Задача", null, -1, NEW);
@@ -82,5 +82,15 @@ public class Task {
     @Override
     public int hashCode() {
         return Objects.hash(getName(), getDescription(), getId(), getStatus());
+    }
+
+    @Override
+    public String toString() {
+        return "Task{" +
+                "name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", id=" + id +
+                ", status='" + status + '\'' +
+                '}';
     }
 }
