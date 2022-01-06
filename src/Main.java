@@ -10,67 +10,67 @@ public class Main {
         System.out.println("Начинаем тестирование бэк-а");
         Manager manager = new Manager();
 
-//        System.out.println("Метод createTask(task). Начинаем тестирование.");
-//        final Task task = new Task();
-//        System.out.println("Создаем 2 задачи");
-//        final Task createdTask = manager.createTask(task);
-//        final Task createdTask1 = manager.createTask(task);
-//        System.out.println("Печатаем содержание 2х задач");
-//        System.out.println(createdTask);
-//        System.out.println(createdTask1);
-//        if(!task.equals(createdTask) && !createdTask.equals(createdTask1))
-//            System.out.println("Метод createTask(task) работает штатно");
-//        else
-//            System.out.println("Метод createTask(task) работает неправильно");
-//
-//        System.out.println("Метод findAllTask(). Начинаем тестирование.");
-//        ArrayList<Task> taskArrayList = manager.findAllTasks();
-//        System.out.println("Метод findAllTask(). Печатаем весь список задач:");
-//        for (Task value : taskArrayList) {
-//            System.out.println(value);
-//        }
-//        if (taskArrayList.isEmpty()) {
-//            System.out.println("Метод findAllTask() не возвращает список задач");
-//        } else {
-//            System.out.println("Метод findAllTask() работает правильно");
-//        }
-//
-//        System.out.println("Метод findTaskById(). Начинаем тестирование.");
-//        Task foundTask = manager.findTaskById(2);
-//        System.out.println("Печатаем найденную задачу");
-//        System.out.println(foundTask);
-//        if (foundTask.getId() != null)
-//            System.out.println("Метод findById() работает");
-//        else
-//            System.out.println("Метод findById() задачу не нашел");
-//
-//        System.out.println("Метод updateTaskById(). Начинаем тестирование.");
-//        final Task createdTask2 = manager.updateTaskByID(createdTask1);
-//        System.out.println("Печатам переданную в метод и обновленную задачу:");
-//        System.out.println(createdTask1);
-//        System.out.println(createdTask2);
-//        if (createdTask2.equals(createdTask1))
-//            System.out.println("Метод updateTaskById() работает");
-//        else
-//        System.out.println("Метод updateTaskById() не работает");
-//
-//
-//        System.out.println("Метод deleteTaskById(). Начинаем тестирование.");
-//        System.out.println("Печатам удаляемую задачу:");
-//        System.out.println(manager.findTaskById(1));
-//        manager.deleteTaskById(1);
-//        if (manager.findTaskById(1) == null)
-//            System.out.println("Задача удалена. Метод deleteTaskById() работает правильно.");
-//        else
-//            System.out.println("Метод deleteTaskById() не работает");
-//
-//        System.out.println("Метод deleteAllTask(). Начинаем тестирование.");
-//        manager.deleteAllTask();
-//        if (manager.findAllTasks().isEmpty()) {
-//            System.out.println("Метод deleteAllTask() работает правильно");
-//        } else {
-//            System.out.println("Метод deleteAllTask() не работает");
-//        }
+        System.out.println("Метод createTask(task). Начинаем тестирование.");
+        final Task task = new Task();
+        System.out.println("Создаем 2 задачи");
+        final Task createdTask = manager.createTask(task);
+        final Task createdTask1 = manager.createTask(task);
+        System.out.println("Печатаем содержание 2х задач");
+        System.out.println(createdTask);
+        System.out.println(createdTask1);
+        if(!task.equals(createdTask) && !createdTask.equals(createdTask1))
+            System.out.println("Метод createTask(task) работает штатно");
+        else
+            System.out.println("Метод createTask(task) работает неправильно");
+
+        System.out.println("Метод findAllTask(). Начинаем тестирование.");
+        ArrayList<Task> taskArrayList = manager.findAllTasks();
+        System.out.println("Метод findAllTask(). Печатаем весь список задач:");
+        for (Task value : taskArrayList) {
+            System.out.println(value);
+        }
+        if (taskArrayList.isEmpty()) {
+            System.out.println("Метод findAllTask() не возвращает список задач");
+        } else {
+            System.out.println("Метод findAllTask() работает правильно");
+        }
+
+        System.out.println("Метод findTaskById(). Начинаем тестирование.");
+        Task foundTask = manager.findTaskById(2);
+        System.out.println("Печатаем найденную задачу");
+        System.out.println(foundTask);
+        if (foundTask.getId() != null)
+            System.out.println("Метод findById() работает");
+        else
+            System.out.println("Метод findById() задачу не нашел");
+
+        System.out.println("Метод updateTaskById(). Начинаем тестирование.");
+        final Task createdTask2 = manager.updateTaskByID(createdTask1);
+        System.out.println("Печатам переданную в метод и обновленную задачу:");
+        System.out.println(createdTask1);
+        System.out.println(createdTask2);
+        if (createdTask2.equals(createdTask1))
+            System.out.println("Метод updateTaskById() работает");
+        else
+        System.out.println("Метод updateTaskById() не работает");
+
+
+        System.out.println("Метод deleteTaskById(). Начинаем тестирование.");
+        System.out.println("Печатам удаляемую задачу:");
+        System.out.println(manager.findTaskById(1));
+        manager.deleteTaskById(1);
+        if (manager.findTaskById(1) == null)
+            System.out.println("Задача удалена. Метод deleteTaskById() работает правильно.");
+        else
+            System.out.println("Метод deleteTaskById() не работает");
+
+        System.out.println("Метод deleteAllTask(). Начинаем тестирование.");
+        manager.deleteAllTask();
+        if (manager.findAllTasks().isEmpty()) {
+            System.out.println("Метод deleteAllTask() работает правильно");
+        } else {
+            System.out.println("Метод deleteAllTask() не работает");
+        }
 
 
         System.out.println("Метод createEpic(epic). Начинаем тестирование.");
@@ -108,7 +108,7 @@ public class Main {
             System.out.println("Метод createSubTask(subtask, epic) работает неправильно");
 
 
-/*       рефреш не работает.
+//       рефреш не работает.
 
  System.out.println("Метод updateSubTaskById(). Начинаем тестирование.");
         final SubTask subTaskNew = subTask1;
@@ -118,7 +118,7 @@ public class Main {
         subTaskNew.setStatus("DONE");
         manager.updateSubTaskByID(subTaskNew);
         System.out.println("Печатаем задачу после обновления");
-        System.out.println(subTaskNew);*/
+        System.out.println(subTaskNew);
 
 //        if (createdTask2.equals(createdTask1))
 //            System.out.println("Метод updateTaskById() работает");
