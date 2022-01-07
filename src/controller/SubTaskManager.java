@@ -2,7 +2,6 @@ package controller;
 
 import model.Epic;
 import model.SubTask;
-import model.Task;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,19 +12,23 @@ import static model.Status.*;
 public class SubTaskManager {
     private Integer counterIDSubTasks = 0;
     private HashMap<Integer, SubTask> subTasks = new HashMap<>();
+    EpicManager epicManager;
 
-    EpicManager epicManager = new EpicManager();
+    public SubTaskManager(EpicManager epicManager) {
+        this.epicManager = epicManager;
+    }
 
     // Добавить подзадачу.
     public SubTask create(SubTask subTask, Epic epic) {
-        final SubTask newTask = new SubTask(subTask.getName(), subTask.getDescription(), ++counterIDSubTasks, epic.getId());
-        if (!subTasks.containsKey(newTask.getId()))
-            subTasks.put(newTask.getId(), newTask);
-        else {
+        final SubTask newSubTask = new SubTask(subTask.getName(), subTask.getDescription(), ++counterIDSubTasks, epic.getId());
+        if (!subTasks.containsKey(newSubTask.getId())) {
+            subTasks.put(newSubTask.getId(), newSubTask);
+            epicManager.epics.get(epic.getId()).getSubTasks().add(/*newSubTask.getId(),*/ newSubTask);
+        } else {
             System.out.println("Задача с таким ID уже существует");
             return null;
         }
-        return newTask;
+        return newSubTask;
     }
 
     // Получить подзадачу по ID
@@ -43,13 +46,16 @@ public class SubTaskManager {
         originalTask.setDescription(task.getDescription());
         originalTask.setName(task.getName());
         originalTask.setStatus(task.getStatus());
+        epicManager.epics.get(task.getEpicID()).getSubTasks().remove(originalTask);
+        epicManager.epics.get(task.getEpicID()).getSubTasks().add(task);
         refreshStatus(task);
         return originalTask;
     }
 
     // Удаление задачи по идентификатору.
-    public Task deleteById(Integer id) {
-        final Task deletedTask = subTasks.get(id);
+    public SubTask deleteById(Integer id) {
+        final SubTask deletedTask = subTasks.get(id);
+        epicManager.epics.get(deletedTask.getEpicID()).getSubTasks().remove(deletedTask);
         subTasks.remove(id);
         return deletedTask;
     }
@@ -61,25 +67,14 @@ public class SubTaskManager {
 
     // Получение списка всех подзадач определённого эпика.
     public ArrayList<SubTask> findAllOfEpic(Epic epic) {
-        ArrayList<SubTask> subTasksOfEpic = new ArrayList<>();
-        for (SubTask subTask : subTasks.values()) {
-            if (epic.getId().equals(subTask.getEpicID())) {
-                subTasksOfEpic.add(subTask);
-            }
-        }
-        return subTasksOfEpic;
+        return epicManager.epics.get(epic.getId()).getSubTasks();
     }
 
     // Обновление статуса эпика в зависимости от статуса подзадач
     public void refreshStatus(SubTask task) {
-        ArrayList<SubTask> subTasksOfEpic = new ArrayList<>();
-        int counterNew = 1;
-        int counterDone = 1;
-        for (int i = 0; i < subTasks.size(); i++) {
-            if (task.getEpicID().equals(subTasks.get(i).getEpicID())) {
-                subTasksOfEpic.add(subTasks.get(i));
-            }
-        }
+        ArrayList<SubTask> subTasksOfEpic = epicManager.epics.get(task.getEpicID()).getSubTasks();
+        int counterNew = 0;
+        int counterDone = 0;
         for (SubTask subTask : subTasksOfEpic) {
             if (subTask.getStatus().equals(NEW)) {
                 counterNew++;

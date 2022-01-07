@@ -12,7 +12,7 @@ public class Manager {
 
     TaskManager taskManager = new TaskManager();
     EpicManager epicManager = new EpicManager();
-    SubTaskManager subTaskManager = new SubTaskManager();
+    SubTaskManager subTaskManager = new SubTaskManager(epicManager);
 
 
     //    Получение списка всех задач.
@@ -41,7 +41,7 @@ public class Manager {
     }
 
     // Получение эпика по идентификатору
-    public Task findEpicById(Integer id) {
+    public Epic findEpicById(Integer id) {
         return epicManager.findById(id);
     }
 

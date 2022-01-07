@@ -37,8 +37,7 @@ public class EpicManager {
         final Epic newTask = new Epic(task.getName(), task.getDescription(), ++counterIDEpics);
         if (!epics.containsKey(newTask.getId())) {
             epics.put(newTask.getId(), newTask);
-        }
-        else {
+        } else {
             System.out.println("Задача с таким ID уже существует");
             return null;
         }
