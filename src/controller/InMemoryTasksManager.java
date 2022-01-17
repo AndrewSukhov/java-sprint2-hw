@@ -5,10 +5,13 @@ import model.SubTask;
 import model.Task;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 // Класс controller.InMemoryTasksManager содержит список CRUD методов для всех типов задач.
 public class InMemoryTasksManager implements Manager {
+
+    private final List<Task> history = new LinkedList<>();
 
     TaskManager taskManager = new TaskManager();
     EpicManager epicManager = new EpicManager();
@@ -36,19 +39,25 @@ public class InMemoryTasksManager implements Manager {
     // Получение подзадачи по идентификатору
     @Override
     public SubTask findSubTaskById(Integer id) {
-        return subTaskManager.findById(id);
+        final SubTask subTask = subTaskManager.findById(id);
+        addInHistory(subTask);
+        return subTask;
     }
 
     // Получение задачи по идентификатору
     @Override
     public Task findTaskById(Integer id) {
-        return taskManager.findById(id);
+        final Task task = taskManager.findById(id);
+        addInHistory(task);
+        return task;
     }
 
     // Получение эпика по идентификатору
     @Override
     public Epic findEpicById(Integer id) {
-        return epicManager.findById(id);
+        final Epic epic = epicManager.findById(id);
+        addInHistory(epic);
+        return epic;
     }
 
     // Добавление задачи.
@@ -122,4 +131,21 @@ public class InMemoryTasksManager implements Manager {
     public Task deleteTaskById(Integer id) {
         return taskManager.deleteById(id);
     }
+
+    // Сохранение последних просмотренных задач.
+    @Override
+    public List<Task> history() {
+        return history;
+    }
+
+    private void addInHistory(Task task) {
+        if (task == null) {
+            return;
+        }
+        if (history.size() == 10) {
+            history.remove(0);
+        }
+        history.add(task);
+    }
+
 }

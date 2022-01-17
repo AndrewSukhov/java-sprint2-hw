@@ -5,7 +5,6 @@ import model.Status;
 import model.SubTask;
 import model.Task;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
@@ -142,6 +141,16 @@ public class Main {
             System.out.println("Метод createEpic(epic) работает штатно");
         } else {
             System.out.println("Метод createEpic(epic) не работает");
+        }
+
+        System.out.println("Метод history(). Начинаем тестирование.");
+        manager.findSubTaskById(1);
+        manager.findEpicById(1);
+        manager.findEpicById(1);
+        if (manager.history().isEmpty()) {
+            System.out.println("провал теста");
+        } else {
+            System.out.println("method hystory() work normally");
         }
     }
 }

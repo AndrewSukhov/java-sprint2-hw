@@ -61,4 +61,7 @@ public interface Manager {
 
     // Удаление задачи по ID.
     Task deleteTaskById(Integer id);
+
+    // Сохранение последних просмотренных задач.
+    List<Task> history();
 }
