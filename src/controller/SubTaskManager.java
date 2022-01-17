@@ -1,12 +1,11 @@
 package controller;
 
 import model.Epic;
+import model.Status;
 import model.SubTask;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
-import static model.Status.*;
 
 // Класс SubTaskManager содержит список CRUD методов для задач типа "подзадача";
 public class SubTaskManager {
@@ -76,18 +75,18 @@ public class SubTaskManager {
         int counterNew = 0;
         int counterDone = 0;
         for (SubTask subTask : subTasksOfEpic) {
-            if (subTask.getStatus().equals(NEW)) {
+            if (subTask.getStatus() == Status.NEW) {
                 counterNew++;
-            } else if (subTask.getStatus().equals(DONE)) {
+            } else if (subTask.getStatus() == Status.DONE) {
                 counterDone++;
             }
         }
         if (counterNew == subTasksOfEpic.size()) {
-            epicManager.epics.get(task.getEpicID()).setStatus(NEW);
+            epicManager.epics.get(task.getEpicID()).setStatus(Status.NEW);
         } else if (counterDone == subTasksOfEpic.size()) {
-            epicManager.epics.get(task.getEpicID()).setStatus(DONE);
+            epicManager.epics.get(task.getEpicID()).setStatus(Status.DONE);
         } else {
-            epicManager.epics.get(task.getEpicID()).setStatus(IN_PROGRESS);
+            epicManager.epics.get(task.getEpicID()).setStatus(Status.IN_PROGRESS);
         }
     }
 }

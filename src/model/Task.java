@@ -9,7 +9,7 @@ public class Task {
     protected String name;
     protected String description;
     protected Integer id;
-    protected String status;
+    protected Status status;
 
     public Task() {
         this("Задача", null, -1, NEW);
@@ -26,7 +26,7 @@ public class Task {
         this(name, "", id, NEW);
     }
 
-    public Task(String name, String description, Integer id, String status) {
+    public Task(String name, String description, Integer id, Status status) {
         this.name = name;
         this.description = description;
         this.id = id;
@@ -60,11 +60,11 @@ public class Task {
         return id;
     }
 
-    public String getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 
