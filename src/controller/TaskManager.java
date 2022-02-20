@@ -1,59 +1,67 @@
 package controller;
 
+import model.Epic;
+import model.SubTask;
 import model.Task;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.List;
 
-// Класс TaskManager содержит список CRUD методов для задач типа "задача";
-public class TaskManager {
-    private HashMap<Integer, Task> tasks = new HashMap<>();
-    private Integer counterIDTasks = 0;
+//
+public interface TaskManager {
+    //    Получение списка всех задач.
+    List<Task> findAllTasks();
 
-    // Получение списка всех задач
-    public ArrayList<Task> findAll() {
-        return new ArrayList<>(tasks.values());
-    }
+    //    Получение списка всех эпиков.
+    List<Epic> findAllEpics();
 
-    // Получение задачи по ID
-    public Task findById(Integer id) {
-        return tasks.get(id);
-    }
+    // Получение списка всех подзадач определённого эпика.
+    List<SubTask> findAllSubTasksOfEpic(Epic epic);
 
-    // Обновление задачи по ID
-    public Task update(Task task) {
-        final Task originalTask = tasks.get(task.getId());
-        if (originalTask == null) {
-            System.out.println("Задачи с таким ID не существует.");
-            return null;
-        }
-        originalTask.setDescription(task.getDescription());
-        originalTask.setName(task.getName());
-        originalTask.setStatus(task.getStatus());
-        return originalTask;
-    }
+    // Получение подзадачи по идентификатору
+    SubTask findSubTaskById(Integer id);
 
-    //    Создание новой задачи
-    public Task create(Task task) {
-        final Task newTask = new Task(task.getName(), task.getDescription(), ++counterIDTasks);
-        if (!tasks.containsKey(newTask.getId()))
-            tasks.put(newTask.getId(), newTask);
-        else {
-            System.out.println("Задача с таким ID уже существует");
-            return null;
-        }
-        return newTask;
-    }
+    // Получение задачи по идентификатору
+    Task findTaskById(Integer id);
 
-    // Удаление задачи по идентификатору.
-    public Task deleteById(Integer id) {
-        final Task deletedTask = tasks.get(id);
-        tasks.remove(id);
-        return deletedTask;
-    }
+    // Получение эпика по идентификатору
+    Epic findEpicById(Integer id);
+
+    // Добавление задачи.
+    Task createTask(Task task);
+
+    // Добавление подзадачи.
+    SubTask createSubTask(SubTask subTask, Epic epic);
+
+    // Добавление Эпика.
+    Epic createEpic(Epic epic);
+
+    // Обновление задачи.
+    Task updateTaskByID(Task task);
+
+    // Обновление подзадачи.
+    SubTask updateSubTaskByID(SubTask subTask);
+
+    // Обновление эпика.
+    Task updateEpicByID(Epic epic);
 
     // Удаление всех задач.
-    public void deleteAll() {
-        tasks.clear();
-    }
+    void deleteAllTask();
+
+    // Удаление всех подзадач.
+    void deleteAllSubTasks();
+
+    // Удаление всех эпиков.
+    void deleteAllEpics();
+
+    // Удаление подзадач по ID.
+    void deleteSubTaskById(Integer id);
+
+    // Удаление эпика по ID.
+    void deleteEpicById(Integer id);
+
+    // Удаление задачи по ID.
+    Task deleteTaskById(Integer id);
+
+    // Сохранение последних просмотренных задач.
+    List<Task> history();
 }

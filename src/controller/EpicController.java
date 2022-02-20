@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 // Класс EpicManager содержит список CRUD методов для задач типа "эпик";
-public class EpicManager {
+public class EpicController {
     HashMap<Integer, Epic> epics = new HashMap<>();
     Integer counterIDEpics = 0;
 

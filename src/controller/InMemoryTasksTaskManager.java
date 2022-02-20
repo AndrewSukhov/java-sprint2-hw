@@ -9,37 +9,37 @@ import java.util.LinkedList;
 import java.util.List;
 
 // Класс controller.InMemoryTasksManager содержит список CRUD методов для всех типов задач.
-public class InMemoryTasksManager implements Manager {
+public class InMemoryTasksTaskManager implements TaskManager {
 
     private final List<Task> history = new LinkedList<>();
 
-    TaskManager taskManager = new TaskManager();
-    EpicManager epicManager = new EpicManager();
-    SubTaskManager subTaskManager = new SubTaskManager(epicManager);
+    TaskController taskController = new TaskController();
+    EpicController epicController = new EpicController();
+    SubTaskController subTaskController = new SubTaskController(epicController);
 
 
     //    Получение списка всех задач.
     @Override
     public ArrayList<Task> findAllTasks() {
-        return taskManager.findAll();
+        return taskController.findAll();
     }
 
     //    Получение списка всех эпиков.
     @Override
     public ArrayList<Epic> findAllEpics() {
-        return epicManager.findAll();
+        return epicController.findAll();
     }
 
     // Получение списка всех подзадач определённого эпика.
     @Override
     public ArrayList<SubTask> findAllSubTasksOfEpic(Epic epic) {
-        return subTaskManager.findAllOfEpic(epic);
+        return subTaskController.findAllOfEpic(epic);
     }
 
     // Получение подзадачи по идентификатору
     @Override
     public SubTask findSubTaskById(Integer id) {
-        final SubTask subTask = subTaskManager.findById(id);
+        final SubTask subTask = subTaskController.findById(id);
         addInHistory(subTask);
         return subTask;
     }
@@ -47,7 +47,7 @@ public class InMemoryTasksManager implements Manager {
     // Получение задачи по идентификатору
     @Override
     public Task findTaskById(Integer id) {
-        final Task task = taskManager.findById(id);
+        final Task task = taskController.findById(id);
         addInHistory(task);
         return task;
     }
@@ -55,7 +55,7 @@ public class InMemoryTasksManager implements Manager {
     // Получение эпика по идентификатору
     @Override
     public Epic findEpicById(Integer id) {
-        final Epic epic = epicManager.findById(id);
+        final Epic epic = epicController.findById(id);
         addInHistory(epic);
         return epic;
     }
@@ -63,73 +63,73 @@ public class InMemoryTasksManager implements Manager {
     // Добавление задачи.
     @Override
     public Task createTask(Task task) {
-        return taskManager.create(task);
+        return taskController.create(task);
     }
 
     // Добавление подзадачи.
     @Override
     public SubTask createSubTask(SubTask subTask, Epic epic) {
-        return subTaskManager.create(subTask, epic);
+        return subTaskController.create(subTask, epic);
     }
 
     // Добавление Эпика.
     @Override
     public Epic createEpic(Epic epic) {
-        return epicManager.create(epic);
+        return epicController.create(epic);
     }
 
     // Обновление задачи.
     @Override
     public Task updateTaskByID(Task task) {
-        return taskManager.update(task);
+        return taskController.update(task);
     }
 
     // Обновление подзадачи.
     @Override
     public SubTask updateSubTaskByID(SubTask subTask) {
-        return subTaskManager.update(subTask);
+        return subTaskController.update(subTask);
     }
 
     // Обновление эпика.
     @Override
     public Task updateEpicByID(Epic epic) {
-        return epicManager.update(epic);
+        return epicController.update(epic);
     }
 
     // Удаление всех задач.
     @Override
     public void deleteAllTask() {
-        taskManager.deleteAll();
+        taskController.deleteAll();
     }
 
     // Удаление всех подзадач.
     @Override
     public void deleteAllSubTasks() {
-        subTaskManager.deleteAll();
+        subTaskController.deleteAll();
     }
 
     // Удаление всех эпиков.
     @Override
     public void deleteAllEpics() {
-        epicManager.deleteAll();
+        epicController.deleteAll();
     }
 
     // Удаление подзадач по ID.
     @Override
     public void deleteSubTaskById(Integer id) {
-        subTaskManager.deleteById(id);
+        subTaskController.deleteById(id);
     }
 
     // Удаление эпика по ID.
     @Override
     public void deleteEpicById(Integer id) {
-        epicManager.deleteById(id);
+        epicController.deleteById(id);
     }
 
     // Удаление задачи по ID.
     @Override
     public Task deleteTaskById(Integer id) {
-        return taskManager.deleteById(id);
+        return taskController.deleteById(id);
     }
 
     // Сохранение последних просмотренных задач.
