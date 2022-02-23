@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-// Класс controller.InMemoryTasksManager содержит список CRUD методов для всех типов задач.
+// Класс controller.InMemoryTasksTaskManager содержит список CRUD методов для всех типов задач.
 public class InMemoryTasksTaskManager implements TaskManager {
 
     private final List<Task> history = new LinkedList<>();
@@ -16,7 +16,7 @@ public class InMemoryTasksTaskManager implements TaskManager {
     TaskController taskController = new TaskController();
     EpicController epicController = new EpicController();
     SubTaskController subTaskController = new SubTaskController(epicController);
-
+    InMemoryHistoryManager inMemoryHistoryManager = new InMemoryHistoryManager();
 
     //    Получение списка всех задач.
     @Override
@@ -117,18 +117,21 @@ public class InMemoryTasksTaskManager implements TaskManager {
     // Удаление подзадач по ID.
     @Override
     public void deleteSubTaskById(Integer id) {
+        inMemoryHistoryManager.remove(id);
         subTaskController.deleteById(id);
     }
 
     // Удаление эпика по ID.
     @Override
     public void deleteEpicById(Integer id) {
+        inMemoryHistoryManager.remove(id);
         epicController.deleteById(id);
     }
 
     // Удаление задачи по ID.
     @Override
     public Task deleteTaskById(Integer id) {
+        inMemoryHistoryManager.remove(id);
         return taskController.deleteById(id);
     }
 
@@ -138,14 +141,29 @@ public class InMemoryTasksTaskManager implements TaskManager {
         return history;
     }
 
-    private void addInHistory(Task task) {
-        if (task == null) {
-            return;
-        }
-        if (history.size() == 10) {
-            history.remove(0);
-        }
-        history.add(task);
+//    private void addInHistory(Task task) {
+//        if (task == null) {
+//            return;
+//        }
+//        if (history.size() == 10) {
+//            history.remove(0);
+//        }
+//        history.add(task);
+//    }
+
+    public List<Task> getHistory() {
+        return inMemoryHistoryManager.getHistory();
     }
 
+    public void removeAllHistory() {
+        inMemoryHistoryManager.removeAll();
+    }
+
+    public void addInHistory(Task task) {
+        inMemoryHistoryManager.add(task);
+    }
+
+    public void removeFromHistoryById(int id) {
+        inMemoryHistoryManager.remove(id);
+    }
 }

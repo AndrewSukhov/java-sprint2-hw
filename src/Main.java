@@ -143,7 +143,7 @@ public class Main {
             System.out.println("Метод createEpic(epic) не работает");
         }
 
-        System.out.println("Метод history(). Начинаем тестирование.");
+/*        System.out.println("Метод history(). Начинаем тестирование.");
         taskManager.findSubTaskById(1);
         taskManager.findEpicById(1);
         taskManager.findEpicById(1);
@@ -151,6 +151,19 @@ public class Main {
             System.out.println("провал теста");
         } else {
             System.out.println("method history() work normally");
-        }
+        }*/
+
+/*        Epic epic1 = taskManager.findEpicById(1);
+        epic1 = taskManager.findEpicById(1);
+        epic1 = taskManager.findEpicById(1);
+        epic1 = taskManager.findEpicById(1);
+        epic1 = taskManager.findEpicById(1);
+        if (taskManager.)*/
     }
+    /*
+    * Написать проверки. очень важно проверять крайние граничные условия, когд размер списка 1 или
+    * последнее значение.
+    * */
+
+
 }
