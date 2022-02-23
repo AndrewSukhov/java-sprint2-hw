@@ -62,9 +62,6 @@ public interface TaskManager {
     // Удаление задачи по ID.
     Task deleteTaskById(Integer id);
 
-    // Сохранение последних просмотренных задач.
-//    List<Task> history();
-
     // Удаление задачи из истории по ИД.
     void removeFromHistoryById(int id);
 

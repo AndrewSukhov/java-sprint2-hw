@@ -5,13 +5,10 @@ import model.SubTask;
 import model.Task;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 // Класс controller.InMemoryTasksTaskManager содержит список CRUD методов для всех типов задач.
 public class InMemoryTasksTaskManager implements TaskManager {
-
-    private final List<Task> history = new LinkedList<>();
 
     TaskController taskController = new TaskController();
     EpicController epicController = new EpicController();
@@ -117,52 +114,40 @@ public class InMemoryTasksTaskManager implements TaskManager {
     // Удаление подзадач по ID.
     @Override
     public void deleteSubTaskById(Integer id) {
-        inMemoryHistoryManager.remove(id);
+        removeFromHistoryById(id);
         subTaskController.deleteById(id);
     }
 
     // Удаление эпика по ID.
     @Override
     public void deleteEpicById(Integer id) {
-        inMemoryHistoryManager.remove(id);
+        removeFromHistoryById(id);
         epicController.deleteById(id);
     }
 
     // Удаление задачи по ID.
     @Override
     public Task deleteTaskById(Integer id) {
-        inMemoryHistoryManager.remove(id);
+        removeFromHistoryById(id);
         return taskController.deleteById(id);
     }
 
-    // Сохранение последних просмотренных задач.
-/*    @Override
-    public List<Task> history() {
-        return history;
-    }*/
-
-//    private void addInHistory(Task task) {
-//        if (task == null) {
-//            return;
-//        }
-//        if (history.size() == 10) {
-//            history.remove(0);
-//        }
-//        history.add(task);
-//    }
-
+    // Получение истории.
     public List<Task> getHistory() {
         return inMemoryHistoryManager.getHistory();
     }
 
+    // Удаление всей истории.
     public void removeAllHistory() {
         inMemoryHistoryManager.removeAll();
     }
 
+    // Добавление задачи в историю.
     public void addInHistory(Task task) {
         inMemoryHistoryManager.add(task);
     }
 
+    // Удаление задачи из истории по ИД.
     public void removeFromHistoryById(int id) {
         inMemoryHistoryManager.remove(id);
     }
