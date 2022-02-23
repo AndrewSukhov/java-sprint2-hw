@@ -136,10 +136,10 @@ public class InMemoryTasksTaskManager implements TaskManager {
     }
 
     // Сохранение последних просмотренных задач.
-    @Override
+/*    @Override
     public List<Task> history() {
         return history;
-    }
+    }*/
 
 //    private void addInHistory(Task task) {
 //        if (task == null) {
