@@ -2,7 +2,9 @@ package controller;
 
 import model.Task;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class InMemoryHistoryManager implements HistoryManager {
     static class Node {
@@ -15,12 +17,14 @@ public class InMemoryHistoryManager implements HistoryManager {
         }
     }
 
-    public InMemoryHistoryManager() {
-    }
+    private Node head;
+    private Node tail;
 
-    Node head;
-    Node tail;
-    HashMap<Integer, Node> map = new HashMap<>();
+    private HashMap<Integer, Node> map = new HashMap<>();
+
+    public HashMap<Integer, Node> getMap() {
+        return map;
+    }
 
     @Override
     public void add(Task task) {

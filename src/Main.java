@@ -54,6 +54,18 @@ public class Main {
             System.out.println(t);
         }
 
+/*
+        // Раскомментировать для проверки удаления всех задач и их же из истории.
+        System.out.println("Удаляем все задачи и проверяем удалились ли они из истории.");
+        taskManager.deleteAllTask();
+        System.out.println("печатаем историю задач");
+        List<Task> tasks1 = taskManager.getHistory();
+        for (var t : tasks1) {
+            System.out.println(t);
+        }
+
+*/
+
         System.out.println("Метод updateTaskById(). Начинаем тестирование.");
         final Task createdTask2 = taskManager.updateTaskByID(createdTask1);
         System.out.println("Печатам переданную в метод и обновленную задачу:");
@@ -149,16 +161,6 @@ public class Main {
         } else {
             System.out.println("Метод createEpic(epic) не работает");
         }
-
-/*        System.out.println("Метод history(). Начинаем тестирование.");
-        taskManager.findSubTaskById(1);
-        taskManager.findEpicById(1);
-        taskManager.findEpicById(1);
-        if (taskManager.history().isEmpty()) {
-            System.out.println("провал теста");
-        } else {
-            System.out.println("method history() work normally");
-        }*/
 
         Epic epic1 = taskManager.findEpicById(1);
         epic1 = taskManager.findEpicById(1);

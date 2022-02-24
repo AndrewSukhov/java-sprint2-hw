@@ -96,6 +96,16 @@ public class InMemoryTasksTaskManager implements TaskManager {
     // Удаление всех задач.
     @Override
     public void deleteAllTask() {
+        // Если удаляемые задачи присутствуют в истории, то очищаем и их.
+        if(!inMemoryHistoryManager.getMap().isEmpty()){
+            for (var historyTask : inMemoryHistoryManager.getMap().values()) {
+                for (var task: taskController.getTasks().values()) {
+                    if (task.equals(historyTask.task)) {
+                        inMemoryHistoryManager.remove(historyTask.task.getId());
+                    }
+                }
+            }
+        }
         taskController.deleteAll();
     }
 

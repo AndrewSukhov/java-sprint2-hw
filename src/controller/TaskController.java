@@ -7,6 +7,10 @@ import java.util.HashMap;
 
 // Класс TaskManager содержит список CRUD методов для задач типа "задача";
 public class TaskController {
+    public HashMap<Integer, Task> getTasks() {
+        return tasks;
+    }
+
     private HashMap<Integer, Task> tasks = new HashMap<>();
     private Integer counterIDTasks = 0;
 
