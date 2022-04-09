@@ -13,13 +13,19 @@ public class SubTaskController {
     private HashMap<Integer, SubTask> subTasks = new HashMap<>();
     EpicController epicController;
 
+    public HashMap<Integer, SubTask> getSubTasks() {
+        return subTasks;
+    }
+
     public SubTaskController(EpicController epicController) {
         this.epicController = epicController;
     }
 
     // Добавить подзадачу.
     public SubTask create(SubTask subTask, Epic epic) {
-        final SubTask newSubTask = new SubTask(subTask.getName(), subTask.getDescription(), ++counterIDSubTasks, epic.getId());
+        final SubTask newSubTask = new SubTask(
+                subTask.getType(), subTask.getName(),
+                subTask.getDescription(), ++counterIDSubTasks, subTask.getStatus(), epic.getId());
         if (!subTasks.containsKey(newSubTask.getId())) {
             subTasks.put(newSubTask.getId(), newSubTask);
             epicController.epics.get(epic.getId()).getSubTasks().add(/*newSubTask.getId(),*/ newSubTask);

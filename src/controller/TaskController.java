@@ -1,5 +1,6 @@
 package controller;
 
+import model.Status;
 import model.Task;
 
 import java.util.ArrayList;
@@ -39,7 +40,9 @@ public class TaskController {
 
     //    Создание новой задачи
     public Task create(Task task) {
-        final Task newTask = new Task(task.getName(), task.getDescription(), ++counterIDTasks);
+        final Task newTask = new Task(
+                task.getType(), task.getName(),
+                task.getDescription(), ++counterIDTasks, task.getStatus());
         if (!tasks.containsKey(newTask.getId()))
             tasks.put(newTask.getId(), newTask);
         else {

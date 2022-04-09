@@ -10,10 +10,10 @@ import java.util.List;
 // Класс controller.InMemoryTasksTaskManager содержит список CRUD методов для всех типов задач.
 public class InMemoryTasksTaskManager implements TaskManager {
 
-    TaskController taskController = new TaskController();
-    EpicController epicController = new EpicController();
-    SubTaskController subTaskController = new SubTaskController(epicController);
-    InMemoryHistoryManager inMemoryHistoryManager = new InMemoryHistoryManager();
+    static TaskController taskController = new TaskController();
+    static EpicController epicController = new EpicController();
+    static SubTaskController subTaskController = new SubTaskController(epicController);
+    static InMemoryHistoryManager inMemoryHistoryManager = new InMemoryHistoryManager();
 
     //    Получение списка всех задач.
     @Override

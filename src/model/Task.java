@@ -10,9 +10,17 @@ public class Task {
     protected String description;
     protected Integer id;
     protected Status status;
+    protected String type;
 
     public Task() {
         this("Задача", null, -1, NEW);
+    }
+    public Task(String type, String name, String description, Integer id, Status status) {
+        this.name = name;
+        this.description = description;
+        this.id = id;
+        this.status = status;
+        this.type = type;
     }
 
     public Task(String name, String description, Integer id) {
@@ -38,6 +46,10 @@ public class Task {
         this.description = task.description;
         this.id = task.id;
         this.status = task.status;
+    }
+
+    public String getType() {
+        return type;
     }
 
     public String getName() {
@@ -86,11 +98,10 @@ public class Task {
 
     @Override
     public String toString() {
-        return "Task{" +
-                "name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", id=" + id +
-                ", status='" + status + '\'' +
-                '}';
+        return         type +
+                ", " + name +
+                ", " + description +
+                ", " + id +
+                ", " + status;
     }
 }
