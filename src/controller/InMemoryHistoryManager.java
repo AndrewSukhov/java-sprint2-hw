@@ -66,9 +66,9 @@ public class InMemoryHistoryManager implements HistoryManager {
 
     @Override
     public void removeAll() {
-        Node head = null;
-        Node tail = null;
-        HashMap<Integer, Node> map = new HashMap<>();
+        /*Node */head = null;
+        /*Node */tail = null;
+        /*HashMap<Integer, Node> */map = new HashMap<>();
     }
 
     @Override

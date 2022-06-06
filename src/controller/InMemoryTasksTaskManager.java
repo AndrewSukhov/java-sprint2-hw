@@ -4,8 +4,8 @@ import model.Epic;
 import model.SubTask;
 import model.Task;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDateTime;
+import java.util.*;
 
 // Класс controller.InMemoryTasksTaskManager содержит список CRUD методов для всех типов задач.
 public class InMemoryTasksTaskManager implements TaskManager {
@@ -14,6 +14,12 @@ public class InMemoryTasksTaskManager implements TaskManager {
     static EpicController epicController = new EpicController();
     static SubTaskController subTaskController = new SubTaskController(epicController);
     static InMemoryHistoryManager inMemoryHistoryManager = new InMemoryHistoryManager();
+    private static Set<Task> prioritizedTasks =
+            new TreeSet<>(Comparator.<Task, LocalDateTime>comparing(
+                            t -> t.getStartTime(),
+                            Comparator.nullsLast(Comparator.naturalOrder())
+                    )
+                    .thenComparingInt(Task::getId));
 
     //    Получение списка всех задач.
     @Override
@@ -160,5 +166,10 @@ public class InMemoryTasksTaskManager implements TaskManager {
     // Удаление задачи из истории по ИД.
     public void removeFromHistoryById(int id) {
         inMemoryHistoryManager.remove(id);
+    }
+
+    @Override
+    public Set<Task> getPrioritizedTasks() {
+        return prioritizedTasks;
     }
 }

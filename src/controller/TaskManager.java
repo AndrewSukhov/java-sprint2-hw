@@ -5,6 +5,7 @@ import model.SubTask;
 import model.Task;
 
 import java.util.List;
+import java.util.Set;
 
 //
 public interface TaskManager {
@@ -74,4 +75,6 @@ public interface TaskManager {
     // Удаление всей истории.
      void removeAllHistory();
 
+     // Получение сортированного множества
+    Set<Task> getPrioritizedTasks();
 }

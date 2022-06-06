@@ -1,5 +1,6 @@
 package model;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 import static model.Status.NEW;
@@ -11,6 +12,21 @@ public class Task {
     protected Integer id;
     protected Status status;
     protected String type;
+    protected LocalDateTime startTime;
+    protected Integer duration;
+    protected LocalDateTime endTime;
+
+    public Task(String name, String description, Integer id, Status status, String type,
+                LocalDateTime startTime, Integer duration) {
+        this.name = name;
+        this.description = description;
+        this.id = id;
+        this.status = status;
+        this.type = type;
+        this.startTime = startTime;
+        this.duration = duration;
+        this.endTime = startTime.plusMinutes(duration) ;
+    }
 
     public Task() {
         this("Задача", null, -1, NEW);
@@ -78,6 +94,22 @@ public class Task {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public LocalDateTime getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(LocalDateTime startTime) {
+        this.startTime = startTime;
+    }
+
+    public Integer getDuration() {
+        return duration;
+    }
+
+    public void setDuration(Integer duration) {
+        this.duration = duration;
     }
 
     @Override

@@ -131,7 +131,7 @@ public class FileBackedTasksManager extends InMemoryTasksTaskManager implements 
     }
 
     // Загрузить данные из файла.
-    static FileBackedTasksManager loadFromFile(File storageTask) {
+    FileBackedTasksManager loadFromFile(File storageTask) {
         FileBackedTasksManager fileBackedTasksManager = new FileBackedTasksManager();
         try (BufferedReader reader = new BufferedReader(new FileReader(storageTask, StandardCharsets.UTF_8))) {
             boolean readHistory = false;
@@ -172,7 +172,7 @@ public class FileBackedTasksManager extends InMemoryTasksTaskManager implements 
     public static void main(String[] args) {
 
         FileBackedTasksManager fileBackedTasksManager = new FileBackedTasksManager();
-        FileBackedTasksManager.loadFromFile(tasksStorage);
+//        FileBackedTasksManager.loadFromFile(tasksStorage);// чтобы заработал, сделать static loadFromFile()
 
         // Проверяем создание и вывод задач
         Task task1 = new Task("TASK","task 1", "desc task 1", 1, NEW);
