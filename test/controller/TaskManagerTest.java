@@ -119,50 +119,7 @@ abstract class TaskManagerTest<T extends TaskManager> {
         epic = (Epic) taskManager.updateEpicByID(epicDONE);
         assertEquals(epicDONE.getDescription(), epic.getDescription(), "Эпик не обновился");
     }
-/*
-  @Test
-    void deleteAllTask() {
-        taskManager.deleteAllTask();
-        assertEquals(0, taskManager.findAllTasks().size(), "Задачи не удалены");
-    }
 
-    @Test
-    void deleteAllSubTasks() {
-        taskManager.deleteAllSubTasks();
-        assertEquals(null, taskManager.findSubTaskById(1), "Подзадачи не удалены");
-    }
-
-    @Test
-    void deleteAllEpics() {
-        taskManager.deleteAllEpics();
-        assertEquals(0, taskManager.findAllEpics().size(), "Эпики не удалены");
-    }
-
-    @Test
-    void deleteSubTaskById() {
-        taskManager.deleteSubTaskById(1);
-       SubTask subTask = taskManager.findSubTaskById(1);
-        assertEquals(null, taskManager.findSubTaskById(1), "Задача не удалена");
-    }
-
-    @Test
-    void deleteEpicById() {
-        Epic epic2 =  taskManager.createEpic(new Epic("EPIC", "EpicName",
-                "EpicDescript", 2, Status.NEW));
-        taskManager.createEpic(epic2);
-        assertNotNull(taskManager.findEpicById(2), "Задачи не существует");
-        taskManager.deleteEpicById(2);
-        assertEquals(null, taskManager.findEpicById(2), "Задача не удалена");
-    }
-
-
-    @Test
-    void deleteTaskById() {
-        assertNotNull(taskManager.findTaskById(5), "Задачи не существует");
-        taskManager.deleteTaskById(5);
-        assertNull(taskManager.findTaskById(5), "Задача не удалена");
-    }
-*/
     @Test
     void removeFromHistoryById() {
         List<Task> tasksHist = taskManager.getHistory();
